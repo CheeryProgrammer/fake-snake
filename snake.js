@@ -7,7 +7,7 @@ function Snake(length, headX, headY, direction) {
 
     this.head = function (width, height) {
         var h = this.body[this.body.length - 1];
-        if(!width && !height)
+        if (!width && !height)
             return h;
         if (h.x >= width)
             h.x = 0;
@@ -49,6 +49,13 @@ function Snake(length, headX, headY, direction) {
             default:
                 break;
         }
+        var n = this.has(this.head());
+        if (n >= 0) {
+            this.length -= n + 1;
+            while(this.body.length > this.length){
+                this.body.shift();
+            }
+        }
     }
 
     this.updateTail = function () {
@@ -56,5 +63,18 @@ function Snake(length, headX, headY, direction) {
             this.tail = this.body.shift();
         else
             this.tail = this.body[0];
+    }
+
+    this.grow = function () {
+        this.length++;
+    }
+
+    this.has = function (point) {
+        for (var i = this.body.length - 2; i > 0; i--) {
+            if (this.body[i].x === point.x && this.body[i].y === point.y) {
+                return i;
+            }
+        }
+        return -1;
     }
 }
