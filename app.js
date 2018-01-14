@@ -1,9 +1,20 @@
-var snake = new Snake(3, 10, 10, 'right');
-var cellSize = 10;
+var snake = new Snake(30, 10, 10, 'right');
+var cellSize = 15;
 
 function tick() {
     snake.MakeStep();
     drawSnake(snake);
+}
+
+function initialize(){
+    var canvas = document.getElementById("canvas");
+    canvas.width = document.documentElement.clientWidth * 0.9;
+    canvas.height = document.documentElement.clientHeight * 0.9;
+    if (canvas.getContext) {
+        ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#B5C3B4';
+        ctx.fillRect(0,0,canvas.width, canvas.height);
+    }
 }
 
 function drawSnake() {
@@ -12,9 +23,13 @@ function drawSnake() {
     var canvas = document.getElementById("canvas");
     if (canvas.getContext) {
         ctx = canvas.getContext('2d');
-        ctx.fillStyle = 'rgb(150, 10, 98)';
-        ctx.fillRect(head.x * cellSize, head.y * cellSize, cellSize, cellSize);
-        ctx.clearRect(tail.x * cellSize, tail.y * cellSize, cellSize, cellSize);
+        ctx.fillStyle = '#040304';
+        ctx.fillRect(head.x * cellSize + 1, head.y * cellSize + 1, cellSize - 2, cellSize - 2);
+        ctx.fillStyle = '#B5C3B4';
+        ctx.fillRect(head.x * cellSize + 2, head.y * cellSize + 2, cellSize - 4, cellSize - 4)
+        ctx.fillRect(tail.x * cellSize, tail.y * cellSize, cellSize, cellSize);;
+        ctx.fillStyle = '#040304';
+        ctx.fillRect(head.x * cellSize + 3, head.y * cellSize + 3, cellSize - 6, cellSize - 6);
     }
 }
 
