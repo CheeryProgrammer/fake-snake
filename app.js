@@ -1,24 +1,28 @@
 var snake = new Snake(30, 10, 10, 'right');
 var cellSize = 15;
+var fieldWidth;
+var fieldHeight;
 
 function tick() {
     snake.MakeStep();
     drawSnake(snake);
 }
 
-function initialize(){
+function initialize() {
     var canvas = document.getElementById("canvas");
-    canvas.width = document.documentElement.clientWidth * 0.9;
-    canvas.height = document.documentElement.clientHeight * 0.9;
+    fieldWidth = Math.floor(document.documentElement.clientWidth * 0.9 / cellSize);
+    canvas.width = fieldWidth * cellSize;
+    fieldHeight = Math.floor(document.documentElement.clientHeight * 0.9 / cellSize);
+    canvas.height = fieldHeight * cellSize;
     if (canvas.getContext) {
         ctx = canvas.getContext('2d');
         ctx.fillStyle = '#B5C3B4';
-        ctx.fillRect(0,0,canvas.width, canvas.height);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 }
 
 function drawSnake() {
-    var head = snake.head();
+    var head = snake.head(fieldWidth, fieldHeight);
     var tail = snake.tail;
     var canvas = document.getElementById("canvas");
     if (canvas.getContext) {

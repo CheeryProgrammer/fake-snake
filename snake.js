@@ -5,9 +5,19 @@ function Snake(length, headX, headY, direction) {
         { x: headX, y: headY }
     ];
 
-    this.head = function () {
-        return this.body[this.body.length - 1]
+    this.head = function (width, height) {
+        var h = this.body[this.body.length - 1];
+        if (h.x >= width)
+            h.x = 0;
+        if (h.x < 0)
+            h.x = width;
+        if (h.y >= height)
+            h.y = 0;
+        if (h.y < 0)
+            h.y = height;
+        return h;
     }
+
     this.tail = null;
 
     this.direction = direction;
