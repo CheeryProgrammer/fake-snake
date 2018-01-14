@@ -7,6 +7,8 @@ function Snake(length, headX, headY, direction) {
 
     this.head = function (width, height) {
         var h = this.body[this.body.length - 1];
+        if(!width && !height)
+            return h;
         if (h.x >= width)
             h.x = 0;
         if (h.x < 0)

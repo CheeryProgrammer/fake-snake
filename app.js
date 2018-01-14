@@ -10,6 +10,7 @@ function tick() {
 
 function initialize() {
     var canvas = document.getElementById("canvas");
+    canvas.addEventListener('click', onMouseClick);
     fieldWidth = Math.floor(document.documentElement.clientWidth * 0.9 / cellSize);
     canvas.width = fieldWidth * cellSize;
     fieldHeight = Math.floor(document.documentElement.clientHeight * 0.9 / cellSize);
@@ -58,5 +59,23 @@ function onKeyDown(event) {
             break;
         default:
             break;
+    }
+}
+
+function onMouseClick(event) {
+    var h = snake.head();
+    var xDiff = h.x * cellSize - event.clientX + canvas.offsetLeft;
+    var yDiff = h.y * cellSize - event.clientY + canvas.offsetTop;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        if(xDiff <= 0)
+            snake.direction = "right";
+        else
+            snake.direction = "left";
+    }else{
+        if(yDiff >= 0)
+            snake.direction = "up";
+        else
+            snake.direction = "down";
     }
 }
