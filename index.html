@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
-    <script src="snake.js"></script>
-    <script src="app.js"></script>
+<script src="snake.js"></script>
+<script src="app.js"></script>
+
 <head>
     <meta charset="utf-8" />
     <title>Canvas tutorial</title>
     <style type="text/css">
-        canvas {border: 1px solid black;}
+        canvas {
+            border: 1px solid black;
+        }
     </style>
 </head>
 
 <body onload="initialize(); window.addEventListener('keydown', onKeyDown); setInterval(tick, 100);">
-    <canvas id="canvas">
-        Here is the canvas. We apologize you can't see it.
-    </canvas>
+    <div style="text-align: center; vertical-align: middle">
+        <canvas id="canvas">
+            Here is the canvas. We apologize you can't see it.
+        </canvas>
+    </div>
 </body>
 
 </html>
